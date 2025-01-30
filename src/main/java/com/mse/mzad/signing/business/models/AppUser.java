@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +26,6 @@ public class AppUser implements UserDetails {
     private String lastName;
 
     @Column(unique = true, nullable = false)
-    //@Email(message = "Email should be valid")
     @NotNull(message = "Email is required")
     private String email;
 
@@ -53,12 +51,12 @@ public class AppUser implements UserDetails {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus = AccountStatus.DENY;
+
     @Column(nullable = false)
-    //private String role = "USER"; // Default role
+    private String role = "USER";
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //return Collections.singletonList(new SimpleGrantedAuthority(role));
         return Collections.emptyList();
     }
 
