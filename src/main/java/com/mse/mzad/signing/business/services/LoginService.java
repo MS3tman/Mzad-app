@@ -5,10 +5,15 @@ import com.mse.mzad.signing.business.dtos.HttpStatus;
 import com.mse.mzad.signing.business.dtos.LoginData;
 import com.mse.mzad.signing.business.dtos.UserData;
 import com.mse.mzad.signing.business.models.AppUser;
+import com.mse.mzad.signing.business.services.jwt.JwtUtils;
 import com.mse.mzad.signing.business.validators.EmailValidator;
 import com.mse.mzad.signing.infrastructure.repositories.IUserRepository;
-import com.mse.mzad.signing.infrastructure.services.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,9 +28,11 @@ public class LoginService {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
-    private JwtTokenUtils jwtTokenUtils;
-    @Autowired
     private EmailValidator emailValidator;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtUtils jwtUtils;
 
     public ApiResponse<UserData> login(LoginData loginData) {
         emailValidator.validate(loginData.getEmail());
@@ -43,10 +50,18 @@ public class LoginService {
         if (!passwordEncoder.matches(loginData.getPassword(), existUser.getPassword())) {
             throw new IllegalArgumentException("Invalid credentials");
         }
-        return new ApiResponse<>(HttpStatus.CREATED.getValue(), "Login Successfully", mapToUserData(existUser));
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginData.getEmail(), loginData.getPassword())
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String jwtToken = jwtUtils.generateTokenFromUsername(userDetails);
+        return new ApiResponse<>(HttpStatus.CREATED.getValue(), "Login Successfully", mapToUserData(existUser, jwtToken));
     }
 
-    private UserData mapToUserData(AppUser appUser) {
+    private UserData mapToUserData(AppUser appUser, String jwtToken) {
         UserData userData = new UserData();
         userData.setId(appUser.getId());
         userData.setEmail(appUser.getEmail());
@@ -55,8 +70,7 @@ public class LoginService {
         userData.setAddress(appUser.getAddress());
         userData.setCountryCode(appUser.getCountryCode());
         userData.setMobile(appUser.getMobile());
-        String token = jwtTokenUtils.generateToken(appUser);
-        userData.setToken(token);
+        userData.setToken(jwtToken);
         return userData;
     }
 }

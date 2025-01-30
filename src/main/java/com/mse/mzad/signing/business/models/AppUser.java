@@ -3,10 +3,15 @@ package com.mse.mzad.signing.business.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "users")
-public class AppUser {
+public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -48,6 +53,15 @@ public class AppUser {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus = AccountStatus.DENY;
+    @Column(nullable = false)
+    //private String role = "USER"; // Default role
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        //return Collections.singletonList(new SimpleGrantedAuthority(role));
+        return Collections.emptyList();
+    }
+
     public enum AccountStatus { ALLOW, DENY}
 
     public long getId() {
@@ -80,6 +94,11 @@ public class AppUser {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     public void setPassword(String password) {
