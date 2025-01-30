@@ -1,7 +1,7 @@
 package com.mse.mzad.signing.business.services;
 
 import com.mse.mzad.signing.business.dtos.ApiResponse;
-import com.mse.mzad.signing.business.dtos.HttpStatus;
+import org.springframework.http.HttpStatus;
 import com.mse.mzad.signing.business.models.AppUser;
 import com.mse.mzad.signing.business.validators.EmailValidator;
 import com.mse.mzad.signing.infrastructure.repositories.IUserRepository;
@@ -35,6 +35,6 @@ public class ResetPasswordService {
         }
         existUser.setPassword(passwordEncoder.encode(password));
         userRepository.save(existUser);
-        return new ApiResponse<>(HttpStatus.CREATED.getValue(), "Password Change Successfully", null);
+        return new ApiResponse<>(HttpStatus.CREATED.value(), "Password Change Successfully", null);
     }
 }

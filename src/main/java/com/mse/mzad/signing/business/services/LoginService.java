@@ -1,7 +1,7 @@
 package com.mse.mzad.signing.business.services;
 
 import com.mse.mzad.signing.business.dtos.ApiResponse;
-import com.mse.mzad.signing.business.dtos.HttpStatus;
+import org.springframework.http.HttpStatus;
 import com.mse.mzad.signing.business.dtos.LoginData;
 import com.mse.mzad.signing.business.dtos.UserData;
 import com.mse.mzad.signing.business.models.AppUser;
@@ -58,7 +58,7 @@ public class LoginService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String jwtToken = jwtUtils.generateTokenFromUsername(userDetails);
-        return new ApiResponse<>(HttpStatus.CREATED.getValue(), "Login Successfully", mapToUserData(existUser, jwtToken));
+        return new ApiResponse<>(HttpStatus.CREATED.value(), "Login Successfully", mapToUserData(existUser, jwtToken));
     }
 
     private UserData mapToUserData(AppUser appUser, String jwtToken) {

@@ -1,5 +1,7 @@
 package com.mse.mzad.signing.business.dtos;
 
+import org.springframework.http.HttpStatus;
+
 public class ApiResponse<T> {
     private int status_code;
     private String message;

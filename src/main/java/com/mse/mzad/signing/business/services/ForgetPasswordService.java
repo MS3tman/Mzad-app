@@ -1,7 +1,7 @@
 package com.mse.mzad.signing.business.services;
 
 import com.mse.mzad.signing.business.dtos.ApiResponse;
-import com.mse.mzad.signing.business.dtos.HttpStatus;
+import org.springframework.http.HttpStatus;
 import com.mse.mzad.signing.business.models.AppUser;
 import com.mse.mzad.signing.business.validators.EmailValidator;
 import com.mse.mzad.signing.infrastructure.repositories.IUserRepository;
@@ -43,7 +43,7 @@ public class ForgetPasswordService {
         String url = HostService.getCurrentDomain("api/auth/verify/", otp);
         String resetPasswordTemplate = emailTemplate.template(existUser, url, "resetPasswordTemplate.html");
         mailtrap.sender(email, "Reset Password", resetPasswordTemplate);
-        return new ApiResponse<>(HttpStatus.CREATED.getValue(), "Check Your Email", email);
+        return new ApiResponse<>(HttpStatus.CREATED.value(), "Check Your Email", email);
     }
 
 }
