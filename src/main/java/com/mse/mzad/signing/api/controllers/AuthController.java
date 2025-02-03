@@ -33,17 +33,17 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ApiResponse<UserData> login(@RequestBody LoginData loginData) {
-        return loginService.login(loginData);
+    public ApiResponse<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        return loginService.login(loginRequest);
     }
 
     @PostMapping("/forget-password")
-    public ApiResponse<String> forgetPassword(@Valid @RequestBody ForgetPasswordData forgetPasswordData) {
-        return forgetPasswordService.forgetPassword(forgetPasswordData.getEmail());
+    public ApiResponse<String> forgetPassword(@Valid @RequestBody ForgetPasswordRequest forgetPasswordRequest) {
+        return forgetPasswordService.forgetPassword(forgetPasswordRequest.getEmail());
     }
 
     @PostMapping("/reset-password")
-    public ApiResponse<String> resetPassword(@RequestBody ResetPasswordData resetPasswordData) {
-       return resetPasswordService.resetPassword(resetPasswordData.getEmail(), resetPasswordData.getPassword());
+    public ApiResponse<String> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
+       return resetPasswordService.resetPassword(resetPasswordRequest.getEmail(), resetPasswordRequest.getPassword());
     }
 }

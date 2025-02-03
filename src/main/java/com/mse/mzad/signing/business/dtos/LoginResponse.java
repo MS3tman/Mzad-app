@@ -1,8 +1,6 @@
 package com.mse.mzad.signing.business.dtos;
 
-import com.mse.mzad.signing.business.models.AppUser;
-
-public class UserData {
+public class LoginResponse {
     private long id;
     private String firstName;
     private String lastName;

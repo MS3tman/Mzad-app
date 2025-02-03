@@ -25,21 +25,21 @@ public class RegisterService {
 
     public ApiResponse<AppUser> register(AppUser appUser) {
         emailValidator.validate(appUser.getEmail());
-        Optional<AppUser> exisUser = userRepository.findByEmail(appUser.getEmail());
-        if(exisUser.isPresent() && exisUser.get().isVerified()){
+        Optional<AppUser> existUser = userRepository.findByEmail(appUser.getEmail());
+        if(existUser.isPresent() && existUser.get().isVerified()){
             throw new RuntimeException("Account is Already Exist");
         }
-        if(exisUser.isPresent() && !exisUser.get().isVerified()){
-            AppUser existNotVerifiedUser = exisUser.get();
+        if(existUser.isPresent() && !existUser.get().isVerified()){
+            AppUser existNotVerifiedUser = existUser.get();
             String hashedPassword = passwordEncoder.encode(existNotVerifiedUser.getPassword());
             existNotVerifiedUser.setPassword(hashedPassword);
             String otp = otpService.generateOTP();
             existNotVerifiedUser.setOtp(otp);
             existNotVerifiedUser = userRepository.save(existNotVerifiedUser);
             String url = HostService.getCurrentDomain("/api/auth/verify/", existNotVerifiedUser.getOtp());
-            String emailTemplete = emailTemplate.template(existNotVerifiedUser, url, "registerTemplate.html");
-            otpService.sendToMailtrap(existNotVerifiedUser.getEmail(), "Verify Email", emailTemplete);
-            return new ApiResponse<>(HttpStatus.CREATED.value(), "Account Created Siccessfully", existNotVerifiedUser);
+            String emailTemp = emailTemplate.template(existNotVerifiedUser, url, "registerTemplate.html");
+            otpService.sendToMailtrap(existNotVerifiedUser.getEmail(), "Verify Email", emailTemp);
+            return new ApiResponse<>(HttpStatus.CREATED.value(), "Account Created Successfully", existNotVerifiedUser);
         }
         String hashedPassword = passwordEncoder.encode(appUser.getPassword());
         appUser.setPassword(hashedPassword);
@@ -47,9 +47,9 @@ public class RegisterService {
         appUser.setOtp(otp);
         appUser = userRepository.save(appUser);
         String url = HostService.getCurrentDomain("/api/auth/verify/", appUser.getOtp());
-        String emailTemplete = emailTemplate.template(appUser, url, "registerTemplate.html");
-        otpService.sendToMailtrap(appUser.getEmail(), "Verify Email", emailTemplete);
-        return new ApiResponse<>(HttpStatus.CREATED.value(), "Account Created Siccessfully", appUser);
+        String emailTemp = emailTemplate.template(appUser, url, "registerTemplate.html");
+        otpService.sendToMailtrap(appUser.getEmail(), "Verify Email", emailTemp);
+        return new ApiResponse<>(HttpStatus.CREATED.value(), "Account Created Successfully", appUser);
     }
 }
 
