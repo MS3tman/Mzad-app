@@ -5,9 +5,8 @@ import com.mse.mzad.user.internal.business.dtos.loginDtos.LoginRequest;
 import com.mse.mzad.user.internal.business.dtos.loginDtos.LoginResponse;
 import com.mse.mzad.user.internal.business.mappers.LoginMapper;
 import com.mse.mzad.user.internal.business.models.AppUser;
-import com.mse.mzad.user.internal.business.services.jwt.JwtService;
-import com.mse.mzad.user.internal.infrastructure.reposatories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mse.mzad.user.internal.infrastructure.services.jwt.JwtService;
+import com.mse.mzad.user.internal.infrastructure.reposatories.IUserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,16 +14,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private JwtService jwtService;
+    private final IUserRepository userRepository;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
+    private final LoginMapper loginMapper;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private LoginMapper loginMapper;
+    public LoginService(IUserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder, LoginMapper loginMapper) {
+        this.userRepository = userRepository;
+        this.jwtService = jwtService;
+        this.passwordEncoder = passwordEncoder;
+        this.loginMapper = loginMapper;
+    }
 
     public ResponseEntity<BaseResponse<String, LoginResponse>> checkUser(LoginRequest login) {
         AppUser existUser = userRepository.getByEmail(login.getEmail());

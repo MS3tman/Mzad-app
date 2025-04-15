@@ -5,25 +5,28 @@ import com.mse.mzad.user.internal.business.dtos.registerDtos.RegisterRequest;
 import com.mse.mzad.user.internal.business.dtos.registerDtos.VerifyEmailRequest;
 import com.mse.mzad.user.internal.business.mappers.RegisterMapper;
 import com.mse.mzad.user.internal.business.models.AppUser;
-import com.mse.mzad.user.internal.infrastructure.reposatories.UserRepository;
+import com.mse.mzad.user.internal.infrastructure.reposatories.IUserRepository;
+import com.mse.mzad.user.internal.infrastructure.services.EmailService;
 import jakarta.mail.MessagingException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class RegisterService {
-    @Autowired
-    private UserRepository userRepository;
+    private final IUserRepository userRepository;
+    private final EmailService emailService;
+    private final RegisterMapper registerMapper;
 
-    @Autowired
-    private EmailService emailService;
+    public RegisterService(IUserRepository userRepository, EmailService emailService, RegisterMapper registerMapper) {
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+        this.registerMapper = registerMapper;
+    }
 
-    @Autowired
-    private RegisterMapper registerMapper;
-
-    public ResponseEntity<BaseResponse<String, Void>> createAccount(RegisterRequest registerRequest) {
+    public ResponseEntity<BaseResponse<String, Void>> createAccount(RegisterRequest registerRequest) throws IOException {
         AppUser existUser = userRepository.getByEmail(registerRequest.getEmail());
         if(existUser != null && existUser.isVerified()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new BaseResponse<>(HttpStatus.FORBIDDEN.value(), "User Already Exist", null));

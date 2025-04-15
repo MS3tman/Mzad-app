@@ -3,14 +3,14 @@ package com.mse.mzad.user.internal.business.mappers;
 import com.mse.mzad.user.internal.business.dtos.loginDtos.LoginRequest;
 import com.mse.mzad.user.internal.business.dtos.loginDtos.LoginResponse;
 import com.mse.mzad.user.internal.business.models.AppUser;
-import com.mse.mzad.user.internal.infrastructure.reposatories.UserRepository;
+import com.mse.mzad.user.internal.infrastructure.reposatories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LoginMapper {
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     public LoginResponse toDto(LoginRequest loginRequest, String token) {
         AppUser existUser = userRepository.getByEmail(loginRequest.getEmail());

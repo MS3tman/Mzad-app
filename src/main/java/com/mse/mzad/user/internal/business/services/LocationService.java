@@ -6,27 +6,26 @@ import com.mse.mzad.user.internal.business.dtos.locationDtos.UpdateLocationReque
 import com.mse.mzad.user.internal.business.mappers.LocationMapper;
 import com.mse.mzad.user.internal.business.models.AppUser;
 import com.mse.mzad.user.internal.business.models.UserLocation;
-import com.mse.mzad.user.internal.infrastructure.reposatories.LocationRepository;
-import com.mse.mzad.user.internal.infrastructure.reposatories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mse.mzad.user.internal.infrastructure.reposatories.ILocationRepository;
+import com.mse.mzad.user.internal.infrastructure.reposatories.IUserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
 public class LocationService {
-    @Autowired
-    private LocationRepository locationRepository;
+    private final ILocationRepository locationRepository;
+    private final LocationMapper locationMapper;
+    private final IUserRepository userRepository;
 
-    @Autowired
-    private LocationMapper locationMapper;
-
-    @Autowired
-    private UserRepository userRepository;
+    public LocationService(ILocationRepository locationRepository, LocationMapper locationMapper, IUserRepository userRepository) {
+        this.locationRepository = locationRepository;
+        this.locationMapper = locationMapper;
+        this.userRepository = userRepository;
+    }
 
     public ResponseEntity<BaseResponse<String, Void>> create(CreateLocationRequest createLocationRequest) {
         UserLocation newUserLocation = locationMapper.toEntity(createLocationRequest);

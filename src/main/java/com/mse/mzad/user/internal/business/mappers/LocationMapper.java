@@ -4,8 +4,8 @@ import com.mse.mzad.user.internal.business.dtos.locationDtos.CreateLocationReque
 import com.mse.mzad.user.internal.business.dtos.locationDtos.UpdateLocationRequest;
 import com.mse.mzad.user.internal.business.models.AppUser;
 import com.mse.mzad.user.internal.business.models.UserLocation;
-import com.mse.mzad.user.internal.infrastructure.reposatories.LocationRepository;
-import com.mse.mzad.user.internal.infrastructure.reposatories.UserRepository;
+import com.mse.mzad.user.internal.infrastructure.reposatories.ILocationRepository;
+import com.mse.mzad.user.internal.infrastructure.reposatories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,10 +17,10 @@ import java.util.Optional;
 public class LocationMapper {
 
     @Autowired
-    private LocationRepository locationRepository;
+    private ILocationRepository locationRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     public UserLocation toEntity(CreateLocationRequest createLocationRequest) {
         UserLocation userLocation = new UserLocation();

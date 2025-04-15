@@ -1,7 +1,7 @@
 package com.mse.mzad.user.internal.api.config;
 
 import org.springframework.stereotype.Component;
-import com.mse.mzad.user.internal.business.services.jwt.JwtService;
+import com.mse.mzad.user.internal.infrastructure.services.jwt.JwtService;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
@@ -31,7 +33,7 @@ public class UserController {
     private PasswordService passwordService;
 
     @PostMapping("/register")
-    public ResponseEntity<BaseResponse<String, Void>> register(@Valid @RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<BaseResponse<String, Void>> register(@Valid @RequestBody RegisterRequest registerRequest) throws IOException {
         return registerService.createAccount(registerRequest);
     }
 

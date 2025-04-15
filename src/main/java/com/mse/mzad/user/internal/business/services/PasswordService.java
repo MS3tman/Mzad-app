@@ -4,9 +4,9 @@ import com.mse.mzad.user.internal.business.dtos.BaseResponse;
 import com.mse.mzad.user.internal.business.dtos.passwordDtos.ForgetPasswordRequest;
 import com.mse.mzad.user.internal.business.dtos.passwordDtos.ResetPasswordRequest;
 import com.mse.mzad.user.internal.business.models.AppUser;
-import com.mse.mzad.user.internal.infrastructure.reposatories.UserRepository;
+import com.mse.mzad.user.internal.infrastructure.reposatories.IUserRepository;
+import com.mse.mzad.user.internal.infrastructure.services.EmailService;
 import jakarta.mail.MessagingException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,12 +14,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PasswordService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private EmailService emailService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final IUserRepository userRepository;
+    private final EmailService emailService;
+    private final PasswordEncoder passwordEncoder;
+
+    public PasswordService(IUserRepository userRepository, EmailService emailService, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public ResponseEntity<BaseResponse<String, Void>> validateEmail(ForgetPasswordRequest forgetPasswordRequest) {
         AppUser existUser = userRepository.getByEmail(forgetPasswordRequest.getEmail());
