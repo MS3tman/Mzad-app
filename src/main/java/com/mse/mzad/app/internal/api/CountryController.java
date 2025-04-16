@@ -1,4 +1,4 @@
-package com.mse.mzad.app.internal.api.controllers;
+package com.mse.mzad.app.internal.api;
 
 import com.mse.mzad.app.internal.application.commands.country.CreateCountry;
 import com.mse.mzad.app.internal.application.commands.country.DeleteCountry;

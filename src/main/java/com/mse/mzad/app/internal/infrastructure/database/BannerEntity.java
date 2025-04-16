@@ -11,10 +11,22 @@ public class BannerEntity extends BaseEntity{
     private String title;
     private String imagePath;
 
+    public BannerEntity(){}
+
     public BannerEntity(
             String title,
             String imagePath
     ) {
+        this.title = title;
+        this.imagePath = imagePath;
+    }
+
+    public BannerEntity(
+            long id,
+            String title,
+            String imagePath
+    ) {
+        this.id = id;
         this.title = title;
         this.imagePath = imagePath;
     }

@@ -5,8 +5,16 @@ import com.mse.mzad.app.internal.infrastructure.database.BannerEntity;
 
 public class BannerMapper {
 
-    public static BannerEntity toEntity(Banner banner) {
+    public static BannerEntity toEntityForCreate(Banner banner) {
         return new BannerEntity(
+                banner.getTitle(),
+                banner.getImagePath()
+        );
+    }
+
+    public static BannerEntity toEntityForUpdate(Banner banner) {
+        return new BannerEntity(
+                banner.getId(),
                 banner.getTitle(),
                 banner.getImagePath()
         );
