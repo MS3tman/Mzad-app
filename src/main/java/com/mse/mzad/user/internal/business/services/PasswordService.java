@@ -1,6 +1,6 @@
 package com.mse.mzad.user.internal.business.services;
 
-import com.mse.mzad.user.internal.business.dtos.BaseResponse;
+import com.mse.mzad.shared.base.BaseResponse;
 import com.mse.mzad.user.internal.business.dtos.passwordDtos.ForgetPasswordRequest;
 import com.mse.mzad.user.internal.business.dtos.passwordDtos.ResetPasswordRequest;
 import com.mse.mzad.user.internal.business.models.AppUser;

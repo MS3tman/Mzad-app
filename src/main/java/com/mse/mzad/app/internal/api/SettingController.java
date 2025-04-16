@@ -7,7 +7,7 @@ import com.mse.mzad.app.internal.application.queries.setting.ReadSetting;
 import com.mse.mzad.app.internal.domain.dtos.setting.CreateRequest;
 import com.mse.mzad.app.internal.domain.dtos.setting.UpdateRequest;
 import com.mse.mzad.app.internal.domain.models.setting.Setting;
-import com.mse.mzad.user.internal.business.dtos.BaseResponse;
+import com.mse.mzad.shared.base.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

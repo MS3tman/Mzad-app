@@ -1,6 +1,6 @@
-package com.mse.mzad.user.internal.business.exceptions;
+package com.mse.mzad.shared.exceptions;
 
-import com.mse.mzad.user.internal.business.dtos.BaseResponse;
+import com.mse.mzad.shared.base.BaseResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

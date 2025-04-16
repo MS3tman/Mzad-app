@@ -7,7 +7,7 @@ import com.mse.mzad.app.internal.application.queries.country.ReadCountry;
 import com.mse.mzad.app.internal.domain.dtos.country.CreateRequest;
 import com.mse.mzad.app.internal.domain.dtos.country.UpdateRequest;
 import com.mse.mzad.app.internal.domain.models.Country;
-import com.mse.mzad.user.internal.business.dtos.BaseResponse;
+import com.mse.mzad.shared.base.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

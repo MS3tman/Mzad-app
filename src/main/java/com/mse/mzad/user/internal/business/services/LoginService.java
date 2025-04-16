@@ -1,6 +1,6 @@
 package com.mse.mzad.user.internal.business.services;
 
-import com.mse.mzad.user.internal.business.dtos.BaseResponse;
+import com.mse.mzad.shared.base.BaseResponse;
 import com.mse.mzad.user.internal.business.dtos.loginDtos.LoginRequest;
 import com.mse.mzad.user.internal.business.dtos.loginDtos.LoginResponse;
 import com.mse.mzad.user.internal.business.mappers.LoginMapper;

@@ -1,15 +1,20 @@
 package com.mse.mzad.app.internal.infrastructure.database;
 
+import com.mse.mzad.shared.base.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pages")
-public class PageEntity extends BaseEntity{
+public class PageEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message = "slug is required")
     private String slug;
+    @NotNull(message = "title is required")
     private String title;
+    @NotNull(message = "content is required")
     @Column(columnDefinition = "TEXT")
     private String content;
 

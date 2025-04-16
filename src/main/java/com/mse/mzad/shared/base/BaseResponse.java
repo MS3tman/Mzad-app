@@ -1,4 +1,4 @@
-package com.mse.mzad.user.internal.business.dtos;
+package com.mse.mzad.shared.base;
 
 public class BaseResponse<M, D> {
     private int statusCode;

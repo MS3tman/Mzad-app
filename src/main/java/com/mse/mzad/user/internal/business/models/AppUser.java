@@ -1,5 +1,6 @@
 package com.mse.mzad.user.internal.business.models;
 
+import com.mse.mzad.shared.base.BaseEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class AppUser extends BaseModel {
+public class AppUser extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

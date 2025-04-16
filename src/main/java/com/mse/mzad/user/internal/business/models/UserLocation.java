@@ -1,12 +1,13 @@
 package com.mse.mzad.user.internal.business.models;
 
+import com.mse.mzad.shared.base.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user_locations")
-public class UserLocation extends BaseModel {
+public class UserLocation extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -1,4 +1,4 @@
-package com.mse.mzad.user.internal.business.models;
+package com.mse.mzad.shared.base;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
-public class BaseModel {
+public class BaseEntity {
     @CreatedDate
-    @Column(name = "create_at", updatable = false, nullable = false)
+    @Column(name = "create_at", updatable = false)
     private LocalDateTime createAt;
 
     @LastModifiedDate
-    @Column(name = "update_at", nullable = false)
+    @Column(name = "update_at")
     private LocalDateTime updateAt;
 
     public LocalDateTime getCreateAt() {

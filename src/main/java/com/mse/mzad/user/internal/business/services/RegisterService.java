@@ -1,6 +1,6 @@
 package com.mse.mzad.user.internal.business.services;
 
-import com.mse.mzad.user.internal.business.dtos.BaseResponse;
+import com.mse.mzad.shared.base.BaseResponse;
 import com.mse.mzad.user.internal.business.dtos.registerDtos.RegisterRequest;
 import com.mse.mzad.user.internal.business.dtos.registerDtos.VerifyEmailRequest;
 import com.mse.mzad.user.internal.business.mappers.RegisterMapper;
