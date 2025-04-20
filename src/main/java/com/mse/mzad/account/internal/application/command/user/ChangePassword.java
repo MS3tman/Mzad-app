@@ -1,7 +1,7 @@
 package com.mse.mzad.account.internal.application.command.user;
 
 import com.mse.mzad.account.internal.domain.contracts.IUserRepo;
-import com.mse.mzad.account.internal.domain.dtos.Password.ChangePasswordRequest;
+import com.mse.mzad.account.internal.domain.dtos.user.Password.ChangePasswordRequest;
 import com.mse.mzad.account.internal.domain.models.user.Password;
 import com.mse.mzad.account.internal.domain.models.user.User;
 import org.springframework.security.crypto.password.PasswordEncoder;

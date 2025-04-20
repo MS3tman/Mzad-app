@@ -11,6 +11,4 @@ public class UserImage {
     public UserImage(String imagePath) {
         this.imagePath = imagePath;
     }
-
-
 }

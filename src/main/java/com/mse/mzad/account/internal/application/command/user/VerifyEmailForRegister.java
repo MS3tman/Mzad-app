@@ -1,7 +1,7 @@
 package com.mse.mzad.account.internal.application.command.user;
 
 import com.mse.mzad.account.internal.domain.contracts.IUserRepo;
-import com.mse.mzad.account.internal.domain.dtos.Register.VerifyEmailRequest;
+import com.mse.mzad.account.internal.domain.dtos.user.Register.VerifyEmailRequest;
 import com.mse.mzad.account.internal.domain.models.user.User;
 import com.mse.mzad.account.internal.domain.models.user.UserStatus;
 import org.springframework.stereotype.Service;

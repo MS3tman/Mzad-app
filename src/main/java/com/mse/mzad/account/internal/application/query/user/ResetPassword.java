@@ -2,7 +2,7 @@ package com.mse.mzad.account.internal.application.query.user;
 
 import com.mse.mzad.account.internal.domain.contracts.IEmailService;
 import com.mse.mzad.account.internal.domain.contracts.IUserRepo;
-import com.mse.mzad.account.internal.domain.dtos.Password.ResetPasswordRequest;
+import com.mse.mzad.account.internal.domain.dtos.user.Password.ResetPasswordRequest;
 import com.mse.mzad.account.internal.domain.models.user.User;
 import com.mse.mzad.account.internal.domain.models.user.UserStatus;
 import org.springframework.stereotype.Service;

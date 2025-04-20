@@ -2,9 +2,9 @@ package com.mse.mzad.account.internal.application.query.user;
 
 import com.mse.mzad.account.internal.domain.contracts.IJwtService;
 import com.mse.mzad.account.internal.domain.contracts.IUserRepo;
-import com.mse.mzad.account.internal.domain.dtos.Login.LoginRequest;
-import com.mse.mzad.account.internal.domain.dtos.Login.LoginResponse;
-import com.mse.mzad.account.internal.domain.mappers.LoginMapper;
+import com.mse.mzad.account.internal.domain.dtos.user.Login.LoginRequest;
+import com.mse.mzad.account.internal.domain.dtos.user.Login.LoginResponse;
+import com.mse.mzad.account.internal.domain.mappers.user.LoginMapper;
 import com.mse.mzad.account.internal.domain.models.user.User;
 import com.mse.mzad.account.internal.domain.models.user.UserStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -4,7 +4,7 @@ import com.mse.mzad.app.internal.application.commands.banner.CreateBanner;
 import com.mse.mzad.app.internal.application.commands.banner.DeleteBanner;
 import com.mse.mzad.app.internal.application.commands.banner.UpdateBanner;
 import com.mse.mzad.app.internal.application.queries.banner.ReadBanner;
-import com.mse.mzad.app.internal.domain.models.banner.Banner;
+import com.mse.mzad.app.internal.domain.models.Banner;
 import com.mse.mzad.shared.base.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,14 +26,13 @@ public class BannerController {
     private ReadBanner readBanner;
 
     @PostMapping(value = "/create", consumes = "multipart/form-data")
-    public ResponseEntity<BaseResponse<String, Banner>> create(@RequestParam("title") String title,
-                                                               @RequestParam("image") MultipartFile image) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new BaseResponse<>(HttpStatus.CREATED.value(), "Banner Created Successfully", createBanner.create(title, image)));
+    public ResponseEntity<BaseResponse<String, Banner>> create(@RequestParam String title, @RequestParam MultipartFile imageFile) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new BaseResponse<>(HttpStatus.CREATED.value(), "Banner Created Successfully", createBanner.create(title, imageFile)));
     }
 
     @PutMapping(value = "/update", consumes = "multipart/form-data")
-    public ResponseEntity<BaseResponse<String, Banner>> update(@RequestParam("id") long id, @RequestParam("title") String title, @RequestParam("image") MultipartFile image) {
-        return ResponseEntity.ok(new BaseResponse<>(HttpStatus.OK.value(), "Banner Updated Successfully",updateBanner.update(id, title,image)));
+    public ResponseEntity<BaseResponse<String, Banner>> update(@RequestParam long id, @RequestParam String title, @RequestParam MultipartFile imageFile) {
+        return ResponseEntity.ok(new BaseResponse<>(HttpStatus.OK.value(), "Banner Updated Successfully",updateBanner.update(id, title, imageFile)));
     }
 
     @DeleteMapping("/delete/{id}")

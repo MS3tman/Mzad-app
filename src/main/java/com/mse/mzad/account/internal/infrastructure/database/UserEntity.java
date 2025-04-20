@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Setter
@@ -36,6 +38,8 @@ public class UserEntity extends BaseEntity {
     private String imagePath;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus = UserStatus.DENY;
+    @OneToMany(mappedBy = "user")
+    private List<UserLocationEntity> locations;
 
     public UserEntity() {}
 

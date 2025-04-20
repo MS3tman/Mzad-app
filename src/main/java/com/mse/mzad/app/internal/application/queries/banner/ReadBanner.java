@@ -1,7 +1,7 @@
 package com.mse.mzad.app.internal.application.queries.banner;
 
 import com.mse.mzad.app.internal.domain.contracts.IBannerRepo;
-import com.mse.mzad.app.internal.domain.models.banner.Banner;
+import com.mse.mzad.app.internal.domain.models.Banner;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

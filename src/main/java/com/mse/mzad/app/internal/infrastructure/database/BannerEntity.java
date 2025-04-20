@@ -3,9 +3,11 @@ package com.mse.mzad.app.internal.infrastructure.database;
 import com.mse.mzad.shared.base.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
 @Entity
 @Table(name = "banners")
+@Getter
 public class BannerEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,17 +35,5 @@ public class BannerEntity extends BaseEntity {
         this.id = id;
         this.title = title;
         this.imagePath = imagePath;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getImagePath() {
-        return imagePath;
     }
 }

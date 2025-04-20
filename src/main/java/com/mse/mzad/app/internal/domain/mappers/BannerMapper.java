@@ -1,20 +1,14 @@
 package com.mse.mzad.app.internal.domain.mappers;
 
-import com.mse.mzad.app.internal.domain.contracts.IAppImageHandler;
-import com.mse.mzad.app.internal.domain.dtos.banner.CreateRequest;
-import com.mse.mzad.app.internal.domain.models.banner.Banner;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mse.mzad.app.internal.domain.models.Banner;
 
 public class BannerMapper {
-    @Autowired
-    private static IAppImageHandler appImageHandler;
 
-    public static Banner toDomain(CreateRequest request) {
-        String imagePath = appImageHandler.saveImage(request.getImage(), "banners");
+    public static Banner toDomain(String imagePath, String title) {
         return new Banner(
-                null, // or any default/auto-generated ID
-                request.getTitle(),
-                imagePath
+            null,
+            title,
+            imagePath
         );
     }
 }

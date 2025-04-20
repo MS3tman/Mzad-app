@@ -1,8 +1,8 @@
 package com.mse.mzad.account.internal.application.command.user;
 
 import com.mse.mzad.account.internal.domain.contracts.IUserRepo;
-import com.mse.mzad.account.internal.domain.dtos.Register.RegisterRequest;
-import com.mse.mzad.account.internal.domain.mappers.RegisterMapper;
+import com.mse.mzad.account.internal.domain.dtos.user.Register.RegisterRequest;
+import com.mse.mzad.account.internal.domain.mappers.user.RegisterMapper;
 import com.mse.mzad.account.internal.domain.models.user.User;
 import com.mse.mzad.account.internal.infrastructure.services.EmailService;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,6 +1,6 @@
 package com.mse.mzad.app.internal.domain.contracts;
 
-import com.mse.mzad.app.internal.domain.models.banner.Banner;
+import com.mse.mzad.app.internal.domain.models.Banner;
 import java.util.List;
 
 public interface IBannerRepo {
