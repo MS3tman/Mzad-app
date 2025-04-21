@@ -1,7 +1,11 @@
 package com.mse.mzad.category.internal.infrastructure.mappers;
 
 import com.mse.mzad.category.internal.domain.models.Category;
+import com.mse.mzad.category.internal.domain.models.categoryQuestion.CategoryQuestion;
 import com.mse.mzad.category.internal.infrastructure.database.CategoryEntity;
+import com.mse.mzad.category.internal.infrastructure.database.CategoryQuestionEntity;
+
+import java.util.List;
 
 public class CategoryMapper {
 
@@ -22,7 +26,7 @@ public class CategoryMapper {
         );
     }
 
-    public static Category toDomain(CategoryEntity categoryEntity) {
+    public static Category toDomain(CategoryEntity categoryEntity, List<CategoryQuestion> categoryQuestionList) {
         Long parentId = null;
         if (categoryEntity.getParent() != null) {
             parentId = categoryEntity.getParent().getId();
@@ -31,7 +35,8 @@ public class CategoryMapper {
             categoryEntity.getId(),
             categoryEntity.getTitle(),
             parentId,
-            categoryEntity.getImage()
+            categoryEntity.getImage(),
+            categoryQuestionList
         );
     }
 

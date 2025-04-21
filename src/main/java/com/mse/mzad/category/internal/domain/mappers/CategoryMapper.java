@@ -29,7 +29,8 @@ public class CategoryMapper {
             category.getId(),
             category.getTitle(),
             category.getParentId(),
-            category.getImage()
+            category.getImage(),
+            category.getQuestions()
         );
     }
 }

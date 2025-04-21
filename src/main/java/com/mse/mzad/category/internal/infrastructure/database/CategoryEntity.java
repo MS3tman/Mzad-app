@@ -20,9 +20,11 @@ public class CategoryEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private CategoryEntity parent;
-//    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-//    private List<CategoryEntity> children = new ArrayList<>();
     private String image;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<CategoryEntity> children = new ArrayList<>();
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<CategoryQuestionEntity> questions = new ArrayList<>();
 
     public CategoryEntity() {
     }
